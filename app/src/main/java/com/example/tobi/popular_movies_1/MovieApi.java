@@ -22,9 +22,9 @@ public interface MovieApi {
     Call<MovieResponse> getTopRatedMovies();
 
     @GET("movie/{id}/reviews?" + authentication)
-    Call<MovieResponse> getMovieReviews(@Path("id") int id);
+    Call<ReviewResponse> getMovieReviews(@Path("id") int id);
 
     @GET("movie/{id}/videos?" + authentication)
-    Call<MovieResponse> getMovieVideos(@Path("id") int id);
+    Call<ReviewResponse> getMovieVideos(@Path("id") int id);
 
 }
