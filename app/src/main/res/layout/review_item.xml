@@ -10,13 +10,11 @@
         android:id="@+id/reviewAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        tools:text="Gimio" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/reviewContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Overrated and overhyped. Definitely avoid. Watch on redbox if you must." />
-
+       />
 </LinearLayout>

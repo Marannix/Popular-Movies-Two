@@ -2,10 +2,13 @@ package com.example.tobi.popular_movies_1;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,8 +20,11 @@ import butterknife.ButterKnife;
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
 
     private Context context;
+    private List<Reviews> reviews;
 
-    public void setReviews() {
+    public void setReviews(List<Reviews> reviews, Context context) {
+        this.reviews = reviews;
+        this.context = context;
         this.notifyDataSetChanged();
     }
 
@@ -31,13 +37,15 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ReviewAdapter.ViewHolder holder, int position) {
-//        holder.author.setText();
-//        holder.content.setText();
+        final Reviews review = reviews.get(position);
+        holder.author.setText(review.getAuthor());
+        Log.d("RIPPPPPP", "onBindViewHolder: " + review.getAuthor());
+        holder.content.setText(review.getContent());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return reviews != null ? reviews.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
