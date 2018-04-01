@@ -25,6 +25,6 @@ public interface MovieApi {
     Call<ReviewResponse> getMovieReviews(@Path("id") int id);
 
     @GET("movie/{id}/videos?" + authentication)
-    Call<ReviewResponse> getMovieVideos(@Path("id") int id);
+    Call<VideoResponse> getMovieVideos(@Path("id") int id);
 
 }

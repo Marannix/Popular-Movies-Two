@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
 
+    // remove context if not needed...
     private Context context;
     private List<Reviews> reviews;
 

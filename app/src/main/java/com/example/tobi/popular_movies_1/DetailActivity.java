@@ -31,6 +31,11 @@ public class DetailActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ApiModule apiModule;
 
+    private VideoView videoView;
+    private VideoAdapter videoAdapter;
+    private RecyclerView videoRecyclerView;
+    private LinearLayoutManager videoLayoutManager;
+
     private Movie object;
 
     @Override
@@ -46,6 +51,7 @@ public class DetailActivity extends AppCompatActivity {
         releaseDate = findViewById(R.id.detailReleaseDate);
         title = findViewById(R.id.detailTitle);
         recyclerView = findViewById(R.id.reviewRecyclerView);
+        videoRecyclerView = findViewById(R.id.videoRecyclerView);
 
         Picasso.with(context).load(intent.getStringExtra("path")).into(imageView);
         title.setText(object.getTitle());
@@ -59,7 +65,15 @@ public class DetailActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         reviewView = new ReviewView(reviewAdapter);
 
+        videoLayoutManager = new LinearLayoutManager(this);
+        videoAdapter = new VideoAdapter();
+        videoRecyclerView.setHasFixedSize(true);
+        videoRecyclerView.setAdapter(videoAdapter);
+        videoRecyclerView.setLayoutManager(videoLayoutManager);
+        videoView = new VideoView(videoAdapter);
+
         retrieveReviews();
+        retrieveVideos();
     }
 
 
@@ -86,5 +100,25 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void retrieveVideos() {
+        Call<VideoResponse> videoResponseCall = apiModule.movieApi().getMovieVideos(object.getId());
+
+        videoResponseCall.enqueue(new Callback<VideoResponse>() {
+            @Override
+            public void onResponse(Call<VideoResponse> call, Response<VideoResponse> response) {
+                if (response.isSuccessful()) {
+                    VideoResponse videoResponse =  response.body();
+                    videoView.setVideos(videoResponse.getResults(), context);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<VideoResponse> call, Throwable t) {
+
+            }
+        });
     }
 }
