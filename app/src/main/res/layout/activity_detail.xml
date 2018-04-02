@@ -107,5 +107,13 @@
 
         </LinearLayout>
 
+
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/favouriteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FAVOURITE"/>
+
     </LinearLayout>
 </ScrollView>

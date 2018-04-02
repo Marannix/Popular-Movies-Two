@@ -2,11 +2,15 @@ package com.example.tobi.popular_movies_1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +42,12 @@ public class DetailActivity extends AppCompatActivity {
 
     private Movie object;
 
+    private FavouriteDbHelper favouriteDbHelper;
+    private Movie favourite;
+    private final AppCompatActivity activity = DetailActivity.this;
+
+    Button favouriteButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +63,15 @@ public class DetailActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.reviewRecyclerView);
         videoRecyclerView = findViewById(R.id.videoRecyclerView);
 
+        // REMOVE THIS FROM HERE
+        favouriteButton = findViewById(R.id.favouriteButton);
+
         Picasso.with(context).load(intent.getStringExtra("path")).into(imageView);
         title.setText(object.getTitle());
         overview.setText(object.getOverview());
         releaseDate.setText(object.getReleaseDate());
 
+        // REFACTOR THIS, AWFUL WHAT WAS I THINKING
         reviewAdapter = new ReviewAdapter();
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -65,6 +79,7 @@ public class DetailActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         reviewView = new ReviewView(reviewAdapter);
 
+        // REFACTOR THIS, AWFUL WHAT WAS I THINKING
         videoLayoutManager = new LinearLayoutManager(this);
         videoAdapter = new VideoAdapter();
         videoRecyclerView.setHasFixedSize(true);
@@ -109,7 +124,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<VideoResponse> call, Response<VideoResponse> response) {
                 if (response.isSuccessful()) {
-                    VideoResponse videoResponse =  response.body();
+                    VideoResponse videoResponse = response.body();
                     videoView.setVideos(videoResponse.getResults(), context);
 
                 }
@@ -117,6 +132,17 @@ public class DetailActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<VideoResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void favouriteStuff() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        favouriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
         });
