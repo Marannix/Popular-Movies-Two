@@ -89,6 +89,7 @@ public class DetailActivity extends AppCompatActivity {
 
         retrieveReviews();
         retrieveVideos();
+        favouriteStuff();
     }
 
 
@@ -139,17 +140,37 @@ public class DetailActivity extends AppCompatActivity {
 
     private void favouriteStuff() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
+//        getSharedPreferences(".DetailActivity", MODE_PRIVATE).edit();
+//        final SharedPreferences.Editor editor;
+//        editor = sharedPreferences.edit();
+        favouriteDbHelper = new FavouriteDbHelper(activity);
         favouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              
+                if (!favouriteDbHelper.isFavourite(object.getId())) {
+
+                    SharedPreferences.Editor editor =   getSharedPreferences(".DetailActivity", MODE_PRIVATE).edit();;
+//                    editor = sharedPreferences.edit();
+                    editor.putBoolean("Favourite Added", true);
+                    editor.apply();
+                    saveFavourite();
+                    Toast.makeText(context, "Added to Favourite", Toast.LENGTH_SHORT).show();
+                } else {
+                    SharedPreferences.Editor editor =   getSharedPreferences(".DetailActivity", MODE_PRIVATE).edit();;
+//
+                    int movieId = getIntent().getExtras().getInt("id");
+                    favouriteDbHelper = new FavouriteDbHelper(DetailActivity.this);
+                    favouriteDbHelper.removeFavourite(movieId);
+                    editor.putBoolean("Favourite Removed", true);
+                    editor.apply();
+                    Toast.makeText(context, "Removed From Favourite", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
 
     private void saveFavourite() {
-        favouriteDbHelper = new FavouriteDbHelper(activity);
         favourite = new Movie();
         int movieId = getIntent().getExtras().getInt("id");
         String voteAverage = getIntent().getExtras().getString("vote_average");
@@ -158,7 +179,7 @@ public class DetailActivity extends AppCompatActivity {
         favourite.setId(movieId);
         favourite.setTitle(title.getText().toString().trim());
         favourite.setPosterPath(poster);
-        favourite.setVoteAverage(Float.parseFloat(voteAverage));
+//        favourite.setVoteAverage(Float.parseFloat(voteAverage));
 
         favouriteDbHelper.addFavourite(favourite);
     }

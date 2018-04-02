@@ -98,7 +98,6 @@ public class FavouriteDbHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-//                Movie movie = new Movie(0, "", "", "", 0, 0, "");
                 Movie movie = new Movie();
 
                 movie.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(FavouriteContract.FavouriteEntry.COLUMN_MOVIE_ID))));
@@ -117,6 +116,24 @@ public class FavouriteDbHelper extends SQLiteOpenHelper {
 
         return favouriteList;
 
+    }
+
+    public boolean isFavourite(String fieldValue) {
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        String Query = "SELECT * FROM " + FavouriteContract.FavouriteEntry.TABLE_NAME + " where " +
+                FavouriteContract.FavouriteEntry.COLUMN_MOVIE_ID + " = " + fieldValue;
+
+        Cursor cursor = database.rawQuery(Query, new String[] {fieldValue});
+        if (cursor.getCount() <= 0) {
+            cursor.close();
+            database.close();
+            return false;
+        }
+
+        cursor.close();
+        database.close();
+        return true;
     }
 }
 
