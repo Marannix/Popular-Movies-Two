@@ -143,8 +143,23 @@ public class DetailActivity extends AppCompatActivity {
         favouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+              
             }
         });
+    }
+
+    private void saveFavourite() {
+        favouriteDbHelper = new FavouriteDbHelper(activity);
+        favourite = new Movie();
+        int movieId = getIntent().getExtras().getInt("id");
+        String voteAverage = getIntent().getExtras().getString("vote_average");
+        String poster = getIntent().getExtras().getString("poster_path");
+
+        favourite.setId(movieId);
+        favourite.setTitle(title.getText().toString().trim());
+        favourite.setPosterPath(poster);
+        favourite.setVoteAverage(Float.parseFloat(voteAverage));
+
+        favouriteDbHelper.addFavourite(favourite);
     }
 }
