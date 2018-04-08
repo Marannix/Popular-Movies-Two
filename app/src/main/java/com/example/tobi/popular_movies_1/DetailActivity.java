@@ -62,6 +62,7 @@ public class DetailActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.reviewRecyclerView);
         videoRecyclerView = findViewById(R.id.videoRecyclerView);
 
+
         // REMOVE THIS FROM HERE
         favouriteButton = findViewById(R.id.favouriteButton);
 

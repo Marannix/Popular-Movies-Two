@@ -114,6 +114,7 @@ public class FavouriteDbHelper extends SQLiteOpenHelper {
         cursor.close();
         database.close();
 
+        Log.d(TAG, "getAllFavourite: " + favouriteList);
         return favouriteList;
 
     }

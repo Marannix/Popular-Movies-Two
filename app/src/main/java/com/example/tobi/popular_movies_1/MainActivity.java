@@ -16,6 +16,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String BUNDLE_KEY_MENU_FAVOURITE_MOVIES = "menuFavouriteMovies";
     private static final String BUNDLE_KEY_MENU_POPULAR_MOVIES = "menuPopularMovies";
     private static final String BUNDLE_KEY_MENU_TOP_RATED_MOVIES = "menuTopRatedMovies";
     private static final String BUNDLE_KEY_LAYOUT_MANAGER_STATE = "layoutManagerState";
@@ -26,16 +27,19 @@ public class MainActivity extends AppCompatActivity {
     private GridLayoutManager layoutManager;
     private ApiModule apiModule;
     private MovieView movieView;
+    private FavouriteDbHelper favouriteDbHelper;
 
     private boolean shouldShowPopularMovies = true;
     private boolean shouldShowTopRatedMovies;
+    private boolean shouldShowFavouriteMovies;
+
     private Parcelable layoutManagerInstanceState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        favouriteDbHelper = new FavouriteDbHelper(this);
         init();
         adapter = new GridAdapter();
         context = getApplicationContext();
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             layoutManagerInstanceState = savedInstanceState.getParcelable(BUNDLE_KEY_LAYOUT_MANAGER_STATE);
             shouldShowPopularMovies = savedInstanceState.getBoolean(BUNDLE_KEY_MENU_POPULAR_MOVIES);
             shouldShowTopRatedMovies = savedInstanceState.getBoolean(BUNDLE_KEY_MENU_TOP_RATED_MOVIES);
+            shouldShowFavouriteMovies = savedInstanceState.getBoolean(BUNDLE_KEY_MENU_FAVOURITE_MOVIES);
         }
         showMovies();
     }
@@ -59,9 +64,16 @@ public class MainActivity extends AppCompatActivity {
     private void showMovies() {
         if (shouldShowPopularMovies) {
             retrievePopularMovies();
-        } else {
+        } else if (shouldShowTopRatedMovies) {
             retrieveTopRatedMovies();
+        } else if (shouldShowFavouriteMovies) {
+            retrieveFavouriteMovies();
         }
+    }
+
+    private void retrieveFavouriteMovies() {
+        adapter.clearList();
+        movieView.setMovieData(favouriteDbHelper.getAllFavourite(), context);
     }
 
     @Override
@@ -74,16 +86,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.popularMovies) {
-            if (IsItemChecked(item)) return true;
+//            if (IsItemChecked(item)) return true;
             retrievePopularMovies();
             shouldShowPopularMovies = true;
             shouldShowTopRatedMovies = false;
+            shouldShowFavouriteMovies = false;
             return true;
         } else if (item.getItemId() == R.id.topRated) {
-            if (IsItemChecked(item)) return true;
+//            if (IsItemChecked(item)) return true;
             retrieveTopRatedMovies();
             shouldShowPopularMovies = false;
             shouldShowTopRatedMovies = true;
+            shouldShowFavouriteMovies = false;
+            return true;
+        } else if (item.getItemId() == R.id.favourites) {
+//            if (IsItemChecked(item)) return true;
+            retrieveFavouriteMovies();
+            shouldShowPopularMovies = false;
+            shouldShowTopRatedMovies = false;
+            shouldShowFavouriteMovies = true;
             return true;
         }
         return super.onOptionsItemSelected(item);
