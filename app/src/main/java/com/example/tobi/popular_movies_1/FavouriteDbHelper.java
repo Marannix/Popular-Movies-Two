@@ -118,13 +118,23 @@ public class FavouriteDbHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean isFavourite(String fieldValue) {
+    public boolean isFavourite(String id) {
         SQLiteDatabase database = this.getReadableDatabase();
 
-        String Query = "SELECT * FROM " + FavouriteContract.FavouriteEntry.TABLE_NAME + " where " +
-                FavouriteContract.FavouriteEntry.COLUMN_MOVIE_ID + " = " + fieldValue;
 
-        Cursor cursor = database.rawQuery(Query, new String[] {fieldValue});
+        String[] columns = {FavouriteContract.FavouriteEntry._ID, FavouriteContract.FavouriteEntry.COLUMN_MOVIE_ID,
+                FavouriteContract.FavouriteEntry.COLUMN_MOVIE_TITLE, FavouriteContract.FavouriteEntry.COLUMN_MOVIE_USER_RATING,
+                FavouriteContract.FavouriteEntry.COLUMN_POSTER_PATH, FavouriteContract.FavouriteEntry.COLUMN_MOVIE_OVERVIEW};
+//        String Query = "SELECT * FROM " + FavouriteContract.FavouriteEntry.TABLE_NAME + " where " +
+//                FavouriteContract.FavouriteEntry.COLUMN_MOVIE_ID + "=?" + fieldValue;
+
+        String Query = "SELECT * FROM " + FavouriteContract.FavouriteEntry.TABLE_NAME + " where FavouriteContract.FavouriteEntry.COLUMN_MOVIE_ID  = ?" + id;
+
+        String selection = FavouriteContract.FavouriteEntry.COLUMN_MOVIE_ID + " =?";
+        String[] selectionArgs = new String[]{id};
+
+        Cursor cursor = database.query(FavouriteContract.FavouriteEntry.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+//        Cursor cursor = database.rawQuery(Query, new String[]{fieldValue});
         if (cursor.getCount() <= 0) {
             cursor.close();
             database.close();
