@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void retrieveFavouriteMovies() {
-        adapter.clearList();
+        //adapter.clearList();
         movieView.setMovieData(favouriteDbHelper.getAllFavourite(), context);
     }
 

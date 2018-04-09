@@ -1,7 +1,11 @@
 package com.example.tobi.popular_movies_1;
 
 import android.content.Context;
-
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import java.util.List;
 
 /**
@@ -10,13 +14,26 @@ import java.util.List;
 
 public class ReviewView {
 
-    private ReviewAdapter reviewAdapter;
+  private ViewGroup parent;
+  private ReviewAdapter reviewAdapter;
 
-    public ReviewView(ReviewAdapter reviewAdapter) {
-        this.reviewAdapter = reviewAdapter;
-    }
+  @BindView(R.id.reviewRecyclerView) RecyclerView recyclerView;
 
-    public void setReviews(List<Reviews> results, Context context) {
-        reviewAdapter.setReviews(results, context);
-    }
+  public ReviewView(ViewGroup parent) {
+    ButterKnife.bind(this, parent);
+    this.parent = parent;
+    initReviewAdapter();
+  }
+
+  public void setReviews(List<Reviews> results, Context context) {
+    reviewAdapter.setReviews(results, context);
+  }
+
+  private void initReviewAdapter() {
+    reviewAdapter = new ReviewAdapter();
+    recyclerView.setHasFixedSize(true);
+    LinearLayoutManager layoutManager = new LinearLayoutManager(parent.getContext());
+    recyclerView.setLayoutManager(layoutManager);
+    recyclerView.setAdapter(reviewAdapter);
+  }
 }
