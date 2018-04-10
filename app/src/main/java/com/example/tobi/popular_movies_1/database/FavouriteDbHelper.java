@@ -1,4 +1,4 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.tobi.popular_movies_1.data.FavouriteContract;
 
+import com.example.tobi.popular_movies_1.data.model.Movie;
 import java.util.ArrayList;
 import java.util.List;
 

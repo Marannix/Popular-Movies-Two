@@ -1,5 +1,6 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.response;
 
+import com.example.tobi.popular_movies_1.data.model.Reviews;
 import java.util.List;
 
 /**

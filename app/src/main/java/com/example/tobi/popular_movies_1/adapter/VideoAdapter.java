@@ -1,4 +1,4 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.example.tobi.popular_movies_1.R;
+import com.example.tobi.popular_movies_1.data.model.Videos;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 

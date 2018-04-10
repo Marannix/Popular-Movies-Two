@@ -1,9 +1,11 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.ui.activity;
 
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.example.tobi.popular_movies_1.presenter.MoviePresenter;
+import com.example.tobi.popular_movies_1.R;
 
 public class MainActivity extends BaseActivity {
 

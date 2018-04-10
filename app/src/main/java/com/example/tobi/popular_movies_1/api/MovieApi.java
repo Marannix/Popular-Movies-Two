@@ -1,5 +1,8 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.api;
 
+import com.example.tobi.popular_movies_1.response.MovieResponse;
+import com.example.tobi.popular_movies_1.response.ReviewResponse;
+import com.example.tobi.popular_movies_1.response.VideoResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

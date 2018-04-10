@@ -1,8 +1,11 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import com.example.tobi.popular_movies_1.presenter.DetailPresenter;
+import com.example.tobi.popular_movies_1.R;
+import com.example.tobi.popular_movies_1.data.model.Movie;
 
 public class DetailActivity extends BaseActivity {
 

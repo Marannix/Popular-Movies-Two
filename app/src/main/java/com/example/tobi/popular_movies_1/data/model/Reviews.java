@@ -1,10 +1,10 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.data.model;
 
 /**
  * Created by Tobi on 25-Mar-18.
  */
 
-class Reviews {
+public class Reviews {
 
     private String author;
     private String content;

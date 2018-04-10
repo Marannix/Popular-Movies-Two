@@ -1,4 +1,4 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.data.model;
 
 public class Videos {
 

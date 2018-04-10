@@ -1,17 +1,16 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.example.tobi.popular_movies_1.R;
+import com.example.tobi.popular_movies_1.data.model.Reviews;
+import java.util.List;
 
 /**
  * Created by Tobi on 25-Mar-18.
@@ -19,13 +18,10 @@ import butterknife.ButterKnife;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
 
-    // remove context if not needed...
-    private Context context;
     private List<Reviews> reviews;
 
-    public void setReviews(List<Reviews> reviews, Context context) {
+    public void setReviews(List<Reviews> reviews) {
         this.reviews = reviews;
-        this.context = context;
         this.notifyDataSetChanged();
     }
 

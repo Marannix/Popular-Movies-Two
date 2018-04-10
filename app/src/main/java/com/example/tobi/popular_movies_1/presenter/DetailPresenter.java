@@ -1,4 +1,4 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.presenter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import com.example.tobi.popular_movies_1.database.FavouriteDbHelper;
+import com.example.tobi.popular_movies_1.response.ReviewResponse;
+import com.example.tobi.popular_movies_1.response.VideoResponse;
+import com.example.tobi.popular_movies_1.api.ApiModule;
+import com.example.tobi.popular_movies_1.data.model.Movie;
+import com.example.tobi.popular_movies_1.view.DetailView;
+import com.example.tobi.popular_movies_1.view.ReviewView;
+import com.example.tobi.popular_movies_1.view.VideoView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,7 +57,7 @@ public class DetailPresenter {
       public void onResponse(Call<ReviewResponse> call, Response<ReviewResponse> response) {
         if (response.isSuccessful()) {
           ReviewResponse reviewResponse = response.body();
-          reviewView.setReviews(reviewResponse.getResults(), context);
+          reviewView.setReviews(reviewResponse.getResults());
         }
       }
 

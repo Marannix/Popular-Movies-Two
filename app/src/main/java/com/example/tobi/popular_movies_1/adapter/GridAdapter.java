@@ -1,4 +1,4 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.tobi.popular_movies_1.ui.activity.DetailActivity;
+import com.example.tobi.popular_movies_1.data.model.Movie;
+import com.example.tobi.popular_movies_1.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

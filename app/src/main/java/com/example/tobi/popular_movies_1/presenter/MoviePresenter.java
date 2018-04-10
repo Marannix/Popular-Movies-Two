@@ -1,9 +1,13 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.presenter;
 
 import android.content.Context;
 import android.os.Parcelable;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import com.example.tobi.popular_movies_1.database.FavouriteDbHelper;
+import com.example.tobi.popular_movies_1.response.MovieResponse;
+import com.example.tobi.popular_movies_1.api.ApiModule;
+import com.example.tobi.popular_movies_1.view.MovieView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

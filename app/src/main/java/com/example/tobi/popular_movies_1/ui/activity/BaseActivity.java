@@ -1,4 +1,4 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;

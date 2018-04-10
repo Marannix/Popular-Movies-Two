@@ -1,4 +1,4 @@
-package com.example.tobi.popular_movies_1;
+package com.example.tobi.popular_movies_1.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.example.tobi.popular_movies_1.R;
+import com.example.tobi.popular_movies_1.data.model.Movie;
 import com.squareup.picasso.Picasso;
 
 public class DetailView {
@@ -18,7 +20,7 @@ public class DetailView {
   @BindView(R.id.detailOverview) TextView overview;
   @BindView(R.id.detailReleaseDate) TextView releaseDate;
   @BindView(R.id.detailTitle) TextView title;
-  @BindView(R.id.favouriteButton) Button favouriteButton;
+  public @BindView(R.id.favouriteButton) Button favouriteButton;
 
   public DetailView(ViewGroup parent, Context context) {
     ButterKnife.bind(this, parent);

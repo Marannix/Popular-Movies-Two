@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tobi.popular_movies_1.DetailActivity"
+    tools:context="com.example.tobi.popular_movies_1.ui.activity.DetailActivity"
     >
 
   <LinearLayout
