@@ -10,24 +10,18 @@ import retrofit2.Response;
 
 public class MoviePresenter {
 
+  public boolean shouldShowPopularMovies = true;
+  public boolean shouldShowTopRatedMovies;
+  public boolean shouldShowFavouriteMovies;
   private FavouriteDbHelper favouriteDbHelper;
   private Parcelable layoutManagerInstanceState;
   private final Context context;
   private MovieView movieView;
   private ApiModule apiModule;
 
-  private boolean shouldShowPopularMovies;
-  private boolean shouldShowTopRatedMovies;
-  private boolean shouldShowFavouriteMovies;
-
-  public MoviePresenter(Context context, boolean shouldShowPopularMovies,
-      boolean shouldShowTopRatedMovies, boolean shouldShowFavouriteMovies,
-      Parcelable layoutManagerInstanceState) {
+  public MoviePresenter(Context context, Parcelable layoutManagerInstanceState) {
     this.context = context;
     favouriteDbHelper = new FavouriteDbHelper(context);
-    this.shouldShowPopularMovies = shouldShowPopularMovies;
-    this.shouldShowTopRatedMovies = shouldShowTopRatedMovies;
-    this.shouldShowFavouriteMovies = shouldShowFavouriteMovies;
     this.layoutManagerInstanceState = layoutManagerInstanceState;
   }
 
@@ -51,12 +45,14 @@ public class MoviePresenter {
     }
   }
 
-  public void retrieveFavouriteMovies() {
-    //adapter.clearList();
-    movieView.setMovieData(favouriteDbHelper.getAllFavourite(), context);
+  public void refresh() {
+    if (shouldShowFavouriteMovies) {
+      retrieveFavouriteMovies();
+    }
   }
 
   public void retrievePopularMovies() {
+    showMovies(true, false, false);
     Call<MovieResponse> popularMovies = apiModule.movieApi().getPopularMovies();
     popularMovies.enqueue(new Callback<MovieResponse>() {
       @Override public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
@@ -79,6 +75,7 @@ public class MoviePresenter {
   }
 
   public void retrieveTopRatedMovies() {
+    showMovies(false, true, false);
     Call<MovieResponse> topRated = apiModule.movieApi().getTopRatedMovies();
     topRated.enqueue(new Callback<MovieResponse>() {
       @Override public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
@@ -99,6 +96,18 @@ public class MoviePresenter {
         Toast.makeText(context, "Please check your connection", Toast.LENGTH_SHORT).show();
       }
     });
+  }
+
+  public void retrieveFavouriteMovies() {
+    showMovies(false, false, true);
+    movieView.setMovieData(favouriteDbHelper.getAllFavourite(), context);
+  }
+
+  private void showMovies(boolean showPopularMovies, boolean showTopRatedMovies,
+      boolean showFavouriteMovies) {
+    shouldShowPopularMovies = showPopularMovies;
+    shouldShowTopRatedMovies = showTopRatedMovies;
+    shouldShowFavouriteMovies = showFavouriteMovies;
   }
 
   private void getOnRestoreInstanceState() {

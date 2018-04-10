@@ -3,117 +3,144 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tobi.popular_movies_1.DetailActivity">
+    tools:context="com.example.tobi.popular_movies_1.DetailActivity"
+    >
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        >
 
-        <LinearLayout
+      <ImageView
+          android:id="@+id/detailImageView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_launcher_background"
+          />
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          >
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="@string/detail_title_label"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:padding="5dp"
+            />
 
-            <ImageView
-                android:id="@+id/detailImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_background" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_title_label"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/detailTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/release_date_label"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/detailReleaseDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/detailTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/overview_label"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/detailOverview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="@string/release_date_label"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:padding="5dp"
+            />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Review"
-                android:textStyle="bold"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/reviewRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/detailReleaseDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Trailers"
-                android:textStyle="bold"/>
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/videoRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
+            />
 
         <Button
-            android:layout_gravity="center"
             android:id="@+id/favouriteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FAVOURITE"/>
+            android:text="@string/favourite"
+            />
+
+      </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/overview_label"
+          android:textStyle="bold"
+          android:textSize="17sp"
+          android:padding="5dp"
+          />
+
+      <TextView
+          android:id="@+id/detailOverview"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Review"
+          android:textStyle="bold"
+          android:textSize="17sp"
+          android:padding="5dp"
+          />
+
+      <android.support.v7.widget.RecyclerView
+          android:id="@+id/reviewRecyclerView"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          >
+
+      </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/trailers"
+          android:textStyle="bold"
+          android:textSize="17sp"
+          android:padding="5dp"
+          />
+
+
+      <android.support.v7.widget.RecyclerView
+          android:id="@+id/videoRecyclerView"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          />
+
+    </LinearLayout>
+
+  </LinearLayout>
 </ScrollView>

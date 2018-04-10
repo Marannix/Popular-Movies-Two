@@ -12,7 +12,6 @@ import com.squareup.picasso.Picasso;
 
 public class DetailView {
 
-  private ViewGroup parent;
   private Context context;
 
   @BindView(R.id.detailImageView) ImageView imageView;
@@ -23,7 +22,6 @@ public class DetailView {
 
   public DetailView(ViewGroup parent, Context context) {
     ButterKnife.bind(this, parent);
-    this.parent = parent;
     this.context = context;
   }
 

@@ -16,5 +16,6 @@ public class DetailActivity extends BaseActivity {
     DetailPresenter presenter = new DetailPresenter(getApplicationContext(), activity, intent,
         movie);
     presenter.present(getViewGroup());
+    setTitle(movie.getTitle());
   }
 }

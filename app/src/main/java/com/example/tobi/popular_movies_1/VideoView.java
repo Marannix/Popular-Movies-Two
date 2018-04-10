@@ -29,7 +29,7 @@ public class VideoView {
   private void initVideoAdapter() {
     videoAdapter = new VideoAdapter();
     recyclerView.setHasFixedSize(true);
-    LinearLayoutManager layoutManager = new LinearLayoutManager(parent.getContext());
+    LinearLayoutManager layoutManager = new LinearLayoutManager(parent.getContext(), LinearLayoutManager.HORIZONTAL, false);
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(videoAdapter);
   }

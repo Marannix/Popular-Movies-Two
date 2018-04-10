@@ -6,4 +6,6 @@
     <string name="popular_movies_label">Popular Movies</string>
     <string name="top_rated_label">Top Rated</string>
     <string name="favourites">Favourites</string>
+    <string name="favourite">FAVOURITE</string>
+    <string name="trailers">Trailers</string>
 </resources>
